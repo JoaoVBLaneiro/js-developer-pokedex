@@ -10,11 +10,19 @@ function verDetalhes(pokemonId){
     window.location.href = `detail.html?id=${pokemonId}` 
 }
 
+function pad(number, length) {
+    var str = '' + number;
+    while (str.length < length) {
+        str = '0' + str;
+    }
+    return str;
+}
+
 function loadPokemonItems(offset, limit){
     pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
         const newHtml = pokemons.map((pokemon) => `
             <li class="pokemon ${pokemon.type}">
-                <span class="number">#${pokemon.number}</span>
+                <span class="number">#${pad(pokemon.number,3)}</span>
                 <span class="name">${pokemon.name}</span>
                         
                 <div class="detail">
